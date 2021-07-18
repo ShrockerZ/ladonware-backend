@@ -9,7 +9,7 @@ const ProductSchema= new mongoose.Schema({
         trim:true
     },
     category:{
-        type:ObjectId,
+        type:mongoose.Types.ObjectId,
         ref:'Category'
     },
     price:{
@@ -17,7 +17,11 @@ const ProductSchema= new mongoose.Schema({
         trim:true
     },
     quantity:{
-        type: Number,
+        type:Number,
+    },
+    existences:{
+        type:Boolean,
+        default:true
     }
 });
 
