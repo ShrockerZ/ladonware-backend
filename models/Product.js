@@ -9,7 +9,7 @@ const ProductSchema= new mongoose.Schema({
         trim:true
     },
     category:{
-        type:mongoose.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:'Category'
     },
     price:{
@@ -20,9 +20,12 @@ const ProductSchema= new mongoose.Schema({
         type:Number,
     },
     existences:{
-        type:Boolean,
-        default:true
+        type:String,
+        default:'stock'
+    },
+    image:{
+        type:String,
+        trim:true
     }
 });
-
 module.exports= mongoose.model('Product',ProductSchema);
