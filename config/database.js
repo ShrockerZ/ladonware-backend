@@ -1,6 +1,6 @@
 require('dotenv').config({path:"../.env"});
 const mongoose=     require('mongoose');
-const uri=          process.env.URI_MONGO || 'mongodb://localhost:27017/ladonware_fullstack';
+const uri=          process.env.MONGO_URI || 'mongodb://localhost:27017/ladonware_fullstack';
 
 // connection
 mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify:false})

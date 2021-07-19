@@ -52,7 +52,7 @@ exports.getProduct=async(req,res)=>{
     return res.status(200).json(product);
     }catch(error){
         console.log(error);
-        return res.status(400).json({error:"!Error en eliminacion Productos || deleteProduct()"})
+        return res.status(400).json({error:"!Error en obtencion Productos || deleteProduct()"})
     }
 }
 
@@ -82,10 +82,14 @@ exports.updateProduct=async (req,res)=>{
         // Eliminar imagen anterior 
         const oldproduct = await Product.findById(id);
         const imagePath= './images/'+oldproduct.image;
-        await fs.unlink(imagePath,(error)=>{
-            if(error) console.log(error);
-        })
-        newproduct.image=req.file.filename;
+        if(req.file){
+            await fs.unlink(imagePath,(error)=>{
+                if(error) console.log(error);
+            })
+            newproduct.image=req.file.filename;
+        }else{
+            newproduct.image=oldproduct.image;
+        }
         const result= await Product.findByIdAndUpdate(id,newproduct);
         return res.status(200).json(result);
     }catch(error){
